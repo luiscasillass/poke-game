@@ -1,82 +1,91 @@
 import './App.css';
+import Screen from './game/Screen';
+import Pad from './game/buttons/Pad'; 
+import { useState, useEffect } from 'react';
 
 function App() {
+
+  const [pokemones, setPokemones] = useState([]);
+
+  const BASE_URL = "https://pokeapi.co/api/v2/";
+
+  const getPokemones= async() => {
+    const res = await fetch(`${BASE_URL}pokemon`);
+    const data = await res.json();
+    console.log(data);
+    const pokemonsDetails = await getDetails(data.results);
+    setPokemones(pokemonsDetails);
+  }
+
+  const getDetails = async (results) => {
+    const res = await Promise.all(results.map((result) => fetch(result.url)));
+    const data = await Promise.all(( res).map((gato) => gato.json()));
+    return data;
+  }
+
+  const handlePress = (dir) => {
+    console.log(dir);
+  }
+
+  useEffect(() => {
+    getPokemones();
+  }, [])
+
   return (
     <>
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'center' }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         {/* container game */}
         <div
-          style={{ 
-            width: '350px', 
-            height: '500px', 
-            border:"2px solid black", 
-            borderRadius:'5px 5px 35px 5px' }}
+          style={{
+            width: "350px",
+            height: "500px",
+            border: "2px black solid",
+            borderRadius: "5px 5px 35px 5px",
+          }}
         >
           {/* container screen */}
-          <div
-            style={{ 
-              paddingTop: "5%", 
-              justifyContent: "center", 
-              display: "flex", 
-              paddingBottom:'5%'}}
-          >
-            <div style={{ 
-              width: '85%', 
-              height: '200px', 
-              backgroundColor: 'olive' }}></div>
-          </div>
 
+          <Screen pokemones={pokemones}/>
           {/* Container de botones */}
-
-          <div style={{
-            display:'flex', 
-            justifyContent:'space-around'}}>
-            <div style={{
-              width:"60px", 
-              height:'60px', 
-              backgroundColor:'black'}}>
-              <div>
-                <button style={{
-                  width:'40px', 
-                  height:'40px', 
-                  backgroundColor:'blue'}}></button>
-              </div>
-              <div></div>
-            </div>
-
-            <div style={{paddingTop:'30%'}}>
-            <div style={{
-              width:"60px", 
-              height:'60px', 
-              backgroundColor:'gray'}}>
-                <button style={{rotate: '120deg'}}></button>
-                <button style={{rotate: '120deg'}}></button>
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <Pad handlePress={handlePress}/>
+            <div style={{ paddingTop: "30%" }}>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  display: "flex",
+                  backgroundColor: "gray",
+                  alignItems: "center",
+                }}
+              >
+                <button style={{ rotate: "150deg" }}></button>
+                <button style={{ rotate: "150deg" }}></button>
               </div>
             </div>
-
-            {/* A & B buttons*/}
-
-            <div style={{
-              width:"60px", 
-              height:'60px', 
-              display:'flex',
-              backgroundColor:'black'}}>
-              <div>
-                <button style={{
-                  width:'40px', 
-                  height:'40px', 
-                  backgroundColor:'blue', 
-                  borderRadius:'50%'}}></button>
-              </div>
-              <div>
-              <button style={{
-                width:'40px', 
-                height:'40px', 
-                backgroundColor:'blue', 
-                borderRadius:'50%'}}></button>
-              </div>
+            <div
+              style={{
+                width: "60px",
+                height: "60px",
+                backgroundColor: "black",
+              }}
+            >
+              <button
+                style={{
+                  backgroundColor: "#41498F",
+                  width: "30px",
+                  height: "30px",
+                  borderRadius: "50%",
+                }}
+              ></button>
+              <button
+                style={{
+                  backgroundColor: "#41498F",
+                  width: "30px",
+                  height: "30px",
+                  borderRadius: "50%",
+                }}
+              ></button>
             </div>
           </div>
         </div>
