@@ -10,22 +10,22 @@ const Screen = ({
   onRestart
 }) => {
   const player = selectedPokemones[0];
-  const enemy = selectedPokemones[1];
+  const user = selectedPokemones[1];
 
-  const showBattle = player && enemy;
+  const showBattle = player && user;
 
   return (
     <div className="container-screen">
       <div className="screen-text">
         <div className="screen" style={{ position: "relative", minHeight: "300px" }}>
           {gameOver ? (
-            <div style={{ textAlign: "center", marginTop: "10px", color: "black", fontWeight: "bold", fontSize: "18px" }}>
-              GAME OVER
-              <div style={{ marginTop: "5px", fontSize: "16px" }}>
-                {playerLife > 0 ? "You won!" : "You lost!"}
+            <div style={{ textAlign: "center", marginTop: "100px", color: "black", fontWeight: "bold", fontSize: "18px" }}>
+              Defeated!
+              <div style={{ marginTop: "90px", fontSize: "16px" }}>
+                {/* {playerLife > 0 ? "Victory!" : "Game Over - Continue?"} */}
               </div>
-              <button onClick={onRestart} style={{ marginTop: "10px", padding: "5px 10px", fontSize: "12px" }}>
-                Reiniciar
+              <button onClick={onRestart} style={{ backgroundColor:"#4CAF50", marginTop: "170x", padding: "2px 70px", fontSize: "15px" }}>
+                New Game
               </button>
             </div>
           ) : showBattle ? (
@@ -37,9 +37,9 @@ const Screen = ({
                 right: "20px",
                 textAlign: "right"
               }}>
-                <p>You</p>
+                <p>PC</p>
                 <div style={{ backgroundColor: "#ccc", width: "100px", height: "10px", marginLeft: "auto" }}>
-                  <div style={{ width: `${playerLife}%`, height: "100%", backgroundColor: "green" }}></div>
+                  <div style={{ width: `${playerLife}%`, height: "100%", backgroundColor: "yellow" }}></div>
                 </div>
                 <img src={player?.sprites?.front_default} alt="player" />
                 <p style={{ fontSize: "10px", color: "black" }}>
@@ -54,11 +54,11 @@ const Screen = ({
                 left: "20px",
                 textAlign: "left"
               }}>
-                <p>Enemy</p>
+                <p>User</p>
                 <div style={{ backgroundColor: "#ccc", width: "100px", height: "10px" }}>
                   <div style={{ width: `${computerLife}%`, height: "100%", backgroundColor: "red" }}></div>
                 </div>
-                <img src={enemy?.sprites?.back_default} alt="computer" />
+                <img src={user?.sprites?.back_default} alt="computer" />
                 <p style={{ fontSize: "10px", color: "black" }}>
                   : <strong>{lastComputerMove}</strong>
                 </p>
