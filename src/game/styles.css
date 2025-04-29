@@ -1,0 +1,93 @@
+.action-btn {
+  background-color: #6F2C3F;
+  width: 50px;
+  height: 50px;
+  border-radius: 700%;
+}
+
+.container-action {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  padding-right: 15%;
+  padding-top: 6%;
+}
+
+.container-pad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 3%;
+}
+
+.pad-btn {
+  width: 25px;
+  height: 25px;
+  border-radius: 2px;
+  background-color: #333333;
+  box-shadow: 1px 2px 3px black;
+}
+
+.start-select-wrapper {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  transform: rotate(-10deg);
+  margin-top: 165px;
+}
+
+.gb-btn {
+  background-color: #666666; 
+  border: none;
+  border-radius: 6px;
+  width: px;
+  height: 20px;
+  font-size: 10px;
+  font-family: 'Courier New', monospace; 
+  color: black;
+  box-shadow: 1px 1px 2px #1000;
+  text-shadow: 0.5px 0.5px #0C1C8C;
+  cursor: pointer;
+  transition: transform 0.01s ease-in-out;
+}
+
+.gb-btn:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+
+.screen {
+  width: 98%;
+  height: 200px;
+  background-color: #9BBC0F;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.container-screen{
+  padding-top: 10%;
+  padding-left: 5%;
+}
+
+.app-container {
+  display: flex;
+  justify-content: center;
+}
+
+.game-container {
+  background-color: #C4C4C4;
+  width: 360px;
+  height: 600px;
+  border: 2px black solid;
+  border-radius: 5px 5px 70px 5px;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.container-central{
+  display: flex;
+}
